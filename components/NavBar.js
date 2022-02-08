@@ -1,6 +1,22 @@
+import { useRouter } from "next/router";
 import Link from 'next/link'
 
 const NavBar = () => {
+  const router = useRouter();
+
+
+
+  function isActive(route) {
+    if (route == router.pathname) {
+      return "active";
+    } else return "";
+  }
+
+
+
+
+
+
     return (
         <div className="tm-top-bar" >
     {/* Top Navbar */}
@@ -14,39 +30,40 @@ const NavBar = () => {
 
           </a>
           </Link>
-          <button type="button" id="nav-toggle" className="navbar-toggler collapsed" >
+          <button type="button" data-bs-toggle="modal"
+          data-bs-target="#exampleModal" className="navbar-toggler collapsed" >
             <span className="navbar-toggler-icon" />
           </button>
           <div id="mainNav" className="collapse navbar-collapse tm-bg-white">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link href='/' >
-                <a className="nav-link active " >Home </a>
+                <a className={`nav-link  ${isActive("/")}`} >Home </a>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href='/' >
-                <a className="nav-link" >Flights</a>
+                <Link href='/Flights' >
+                <a className={`nav-link  ${isActive("/Flights")}`} >Flights</a>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href='/' >
-                <a className="nav-link" >Book Tickets</a>
+                <Link href='/BookTickets' >
+                <a className={`nav-link  ${isActive("/BookTickets")}`} >Book Tickets</a>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href='/' >
-                <a className="nav-link">Contact Us</a>
+                <Link href='/Contact' >
+                <a className={`nav-link  ${isActive("/Contact")}`}>Contact Us</a>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link href='/Login' >
-                <a className="nav-link">Login</a>
+                <a className={`nav-link  ${isActive("/Login")}`}>Login</a>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link href='/Signup' >
-                <a className="nav-link">Signup</a>
+                <a className={`nav-link  ${isActive("/Signup")}`}>Signup</a>
                 </Link>
               </li>
             </ul>

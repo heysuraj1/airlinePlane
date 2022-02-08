@@ -16,7 +16,7 @@ const Section = () => {
             <div className="container text-center">
               <img
                 src="https://media.istockphoto.com/photos/couple-in-loungers-on-beach-at-maldives-picture-id672425798?k=20&m=672425798&s=612x612&w=0&h=vJ00TFeiBA7j7L-GjRGqi5D5ZcejT3OD2eJvBUgIKlM="
-                className="img-fluid"
+                className="img-fluid imgholi"
                 alt=""
               />
             </div>
@@ -38,7 +38,7 @@ const Section = () => {
             <div className="container text-center">
               <img
                 src="https://media.istockphoto.com/photos/couple-in-loungers-on-beach-at-maldives-picture-id672425798?k=20&m=672425798&s=612x612&w=0&h=vJ00TFeiBA7j7L-GjRGqi5D5ZcejT3OD2eJvBUgIKlM="
-                className="img-fluid"
+                className="img-fluid imgholi"
                 alt=""
               />
             </div>
@@ -60,7 +60,7 @@ const Section = () => {
             <div className="container text-center">
               <img
                 src="https://media.istockphoto.com/photos/couple-in-loungers-on-beach-at-maldives-picture-id672425798?k=20&m=672425798&s=612x612&w=0&h=vJ00TFeiBA7j7L-GjRGqi5D5ZcejT3OD2eJvBUgIKlM="
-                className="img-fluid"
+                className="img-fluid imgholi"
                 alt=""
               />
             </div>
@@ -82,7 +82,7 @@ const Section = () => {
             <div className="container text-center">
               <img
                 src="https://media.istockphoto.com/photos/couple-in-loungers-on-beach-at-maldives-picture-id672425798?k=20&m=672425798&s=612x612&w=0&h=vJ00TFeiBA7j7L-GjRGqi5D5ZcejT3OD2eJvBUgIKlM="
-                className="img-fluid"
+                className="img-fluid imgholi"
                 alt=""
               />
             </div>

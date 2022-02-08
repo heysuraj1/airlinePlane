@@ -3,21 +3,21 @@ import HeroForm from "../components/HeroForm";
 import Motive from "../components/Motive";
 import BottomHero from "../components/BottomHero";
 import Footer from "../components/Footer";
-import Info from "../components/Info";
+import Info from "../components/info/Info";
 import Section from "../components/Section";
+import MidImage from "../components/MidImage";
 
 const index = () => {
   return (
     <div>
       <div className="tm-main-content" id="top">
         <div className="tm-top-bar-bg" />
-        {/* <NavBar /> */}
         <HeroForm />
         <Motive />
         <Section />
+        <MidImage/>
         <Info />
         <BottomHero />
-        {/* <Footer /> */}
       </div>
     </div>
   );
