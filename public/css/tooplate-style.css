@@ -277,7 +277,7 @@ select.tm-select::-ms-expand { display: none; }
 
 .tm-btn-white-bordered:hover,
 .tm-btn-white-bordered:focus {
-	color: #ee5057;
+	/* color: #ee5057; */
 	background: white;	
 }
 

@@ -9,6 +9,29 @@ const HeroForm = () => {
   const [kids, setKids] = useState("");
   const [type, setType] = useState("");
 
+
+  const handleChange = (e) =>{
+    setAdult(
+     { adult:e.target.value}
+    )
+    
+
+  }
+   const handleChangeKids = (e) =>{
+    setKids(
+      { kids:e.target.value}
+     )
+  }
+   const handleChangeClass = (e) =>{
+    setType(
+      { type:e.target.value}
+     )
+  }
+
+
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(depart, destination, date, adult, kids, type);
@@ -72,19 +95,20 @@ const HeroForm = () => {
                     <select
                       name="adult"
                       className="form-control tm-select"
-                      id="adult"
+                      value={adult}
+                      onChange={handleChange}
                     >
                       <option value>Adult</option>
-                      <option  onChange={(e)=> setAdult(e.target.value) }  value={1}>1</option>
-                      <option onChange={(e)=> setAdult(e.target.value) }  value={2}>2</option>
-                      <option onChange={(e)=> setAdult(e.target.value) }  value={3}>3</option>
-                      <option onChange={(e)=> setAdult(e.target.value) }  value={4}>4</option>
-                      <option onChange={(e)=> setAdult(e.target.value) }  value={5}>5</option>
-                      <option onChange={(e)=> setAdult(e.target.value) }  value={6}>6</option>
-                      <option onChange={(e)=> setAdult(e.target.value) }  value={7}>7</option>
-                      <option onChange={(e)=> setAdult(e.target.value) }  value={8}>8</option>
-                      <option onChange={(e)=> setAdult(e.target.value) }  value={9}>9</option>
-                      <option onChange={(e)=> setAdult(e.target.value) }  value={10}>10</option>
+                      <option  value={1}>1</option>
+                      <option   value={2}>2</option>
+                      <option   value={3}>3</option>
+                      <option  value={4}>4</option>
+                      <option  value={5}>5</option>
+                      <option   value={6}>6</option>
+                      <option   value={7}>7</option>
+                      <option   value={8}>8</option>
+                      <option   value={9}>9</option>
+                      <option   value={10}>10</option>
                     </select>
                     <i className="fa fa-2x fa-user tm-form-element-icon" />
                   </div>
@@ -92,20 +116,22 @@ const HeroForm = () => {
                     <select
                       name="children"
                       className="form-control tm-select"
-                      id="children"
+                      value={kids}
+                      onChange={handleChangeKids}
+
                     >
                       <option value>Children</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={0}>0</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={1}>1</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={2}>2</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={3}>3</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={4}>4</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={5}>5</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={6}>6</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={7}>7</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={8}>8</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={9}>9</option>
-                      <option onChange={(e)=> setKids(e.target.value)}  value={10}>10</option>
+                      <option  value={0}>0</option>
+                      <option   value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option   value={3}>3</option>
+                      <option  value={4}>4</option>
+                      <option   value={5}>5</option>
+                      <option   value={6}>6</option>
+                      <option   value={7}>7</option>
+                      <option   value={8}>8</option>
+                      <option  value={9}>9</option>
+                      <option   value={10}>10</option>
                     </select>
                     <i className="fa fa-user tm-form-element-icon tm-form-element-icon-small" />
                   </div>
@@ -113,12 +139,13 @@ const HeroForm = () => {
                     <select
                       name="children"
                       className="form-control tm-select"
-                      id="children"
+                      value={type}
+                      onChange={handleChangeClass}
                     >
                       <option value>Class</option>
-                      <option onChange={(e)=> setType(e.target.value) }  value="Economy">Economy</option>
-                      <option onChange={(e)=> setType(e.target.value) }  value="Business">Business</option>
-                      <option onChange={(e)=> setType(e.target.value) }  value="Premium Economy">Premium Economy</option>
+                      <option    value="Economy">Economy</option>
+                      <option   value="Business">Business</option>
+                      <option   value="Premium Economy">Premium Economy</option>
                     </select>
                     <i className="fa fa-user tm-form-element-icon tm-form-element-icon-small" />
                   </div>

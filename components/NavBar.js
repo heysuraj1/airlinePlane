@@ -40,12 +40,12 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href='/' >
+                <Link href='/Login' >
                 <a className="nav-link">Login</a>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href='/' >
+                <Link href='/Signup' >
                 <a className="nav-link">Signup</a>
                 </Link>
               </li>
