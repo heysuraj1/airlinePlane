@@ -4,12 +4,12 @@ const Motive = () => {
       <div className="container">
         <div className="row">
           <div className="col text-center">
-            <h2 className="tm-section-title">We are here to help you?</h2>
+            <h2 className="tm-section-title">Having Any Issues ? We Are Here To Help.</h2>
             <p className="tm-color-white tm-section-subtitle">
-              Subscribe to get our newsletters
+              call on our Customer Support , just click on the button below.
             </p>
-            <a href="#" className="tm-color-white tm-btn-white-bordered mb-5">
-              Subscribe Newletters
+            <a href="#" style={{textDecoration:'none'}} className="tm-color-white tm-btn-white-bordered mb-5">
+              Call Us Now
             </a>
           </div>
         </div>

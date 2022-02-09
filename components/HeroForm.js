@@ -77,7 +77,7 @@ const HeroForm = () => {
                     <i className="fa fa-calendar fa-2x tm-form-element-icon" />
                     <input
                       name="check-in"
-                      type="text"
+                      type="date"
                       className="form-control"
                       // here 
                       value={date}
