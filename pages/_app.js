@@ -1,11 +1,9 @@
 import "../styles/globals.css";
 import Head from "next/head";
 import Script from "next/script";
-import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 import Link from "next/link";
-
-
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -16,30 +14,29 @@ function MyApp({ Component, pageProps }) {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>Air Tickets</title>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-          />
-          <link
-            rel="stylesheet"
-            href="font-awesome-4.7.0/css/font-awesome.min.css"
-          />
-          <link rel="stylesheet" href="/css/bootstrap.min.css" />
-          <link rel="stylesheet" type="text/css" href="/slick/slick.css" />
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="/slick/slick-theme.css"
-          />
-          <link rel="stylesheet" type="text/css" href="/css/datepicker.css" />
-          <link rel="stylesheet" href="/css/tooplate-style.css" />
-          <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossOrigin="anonymous"/>
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous"></link>
-        </div>
-        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossOrigin="anonymous"></script>
-      </Head>
-      <NavBar/>
 
+          <link rel="stylesheet" href="/css/bootstrap.min.css" />
+          <link
+            rel="stylesheet"
+            href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+            integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+            integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+            crossOrigin="anonymous"
+          ></link>
+        </div>
+        <script
+          defer
+          src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+          integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+          crossOrigin="anonymous"
+        ></script>
+      </Head>
+      <NavBar />
 
       <div
         className="modal"
@@ -47,7 +44,7 @@ function MyApp({ Component, pageProps }) {
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
-        style={{marginTop:'130px'}}
+        style={{ marginTop: "130px" }}
       >
         <div
           className="modal-dialog modal-dialog-centered"
@@ -122,7 +119,7 @@ function MyApp({ Component, pageProps }) {
                     </button>
                   </Link>
                 </li> */}
-               
+
                 {/* <li className="p-1">
                   <Link href="/contact">
                     <button
@@ -155,9 +152,8 @@ function MyApp({ Component, pageProps }) {
         </div>
       </div>
 
-
       <Component {...pageProps} />
-      <Footer/>
+      <Footer />
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />
     </>
   );

@@ -4,42 +4,42 @@ const SideNav = () => {
         <div className="tm-bg-white">
           <div className="tm-bg-primary tm-sidebar-pad">
             <h3 className="tm-color-white tm-sidebar-title">
-              Recommended Places
+              Great Places To Visit
             </h3>
-            <p className="tm-color-white tm-margin-b-0 tm-font-light">
+            {/* <p className="tm-color-white tm-margin-b-0 tm-font-light">
               Enamel pin cliche tilde, kitsch and VHS thundercats
-            </p>
+            </p> */}
           </div>
           <div className="tm-sidebar-pad-2">
-            <a href="#" className="media tm-media tm-recommended-item">
+            <a  className="media tm-media tm-recommended-item">
               <img src="img/tn-img-01.jpg" alt="Image" />
               <div className="media-body tm-media-body tm-bg-gray">
                 <h4 className="text-uppercase tm-font-semibold tm-sidebar-item-title">
-                  Europe
+                Taj Mahal
                 </h4>
               </div>
             </a>
-            <a href="#" className="media tm-media tm-recommended-item">
+            <a  className="media tm-media tm-recommended-item">
               <img src="img/tn-img-02.jpg" alt="Image" />
               <div className="media-body tm-media-body tm-bg-gray">
                 <h4 className="text-uppercase tm-font-semibold tm-sidebar-item-title">
-                  Asia
+                Ranthambore National Park
                 </h4>
               </div>
             </a>
-            <a href="#" className="media tm-media tm-recommended-item">
+            <a  className="media tm-media tm-recommended-item">
               <img src="img/tn-img-03.jpg" alt="Image" />
               <div className="media-body tm-media-body tm-bg-gray">
                 <h4 className="text-uppercase tm-font-semibold tm-sidebar-item-title">
-                  Africa
+                Amber Palace
                 </h4>
               </div>
             </a>
-            <a href="#" className="media tm-media tm-recommended-item">
+            <a  className="media tm-media tm-recommended-item">
               <img src="img/tn-img-04.jpg" alt="Image" />
               <div className="media-body tm-media-body tm-bg-gray">
                 <h4 className="text-uppercase tm-font-semibold tm-sidebar-item-title">
-                  South America
+                Hawa Mahal
                 </h4>
               </div>
             </a>

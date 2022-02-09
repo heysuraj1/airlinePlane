@@ -13,7 +13,7 @@ const MidImage = () => {
           <div className="container">
             <div className="row">
               <div className="col-sm-6 mt-5">
-                <h2 className="text-danger"><b>Who Are We ?</b></h2>
+                <h2 className="text-info"><b>Who Are We ?</b></h2>
                 <p className="text-white"> 
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Expedita inventore deserunt nostrum eaque consequuntur nihil?
