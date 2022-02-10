@@ -4,6 +4,15 @@ import Script from "next/script";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import { BACKEND_URL } from "../helper/baseUrl";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+
+
+
+const client = new ApolloClient({
+  uri: `${BACKEND_URL}/graphql`,
+  cache: new InMemoryCache(),
+});
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -36,6 +45,7 @@ function MyApp({ Component, pageProps }) {
           crossOrigin="anonymous"
         ></script>
       </Head>
+      <ApolloProvider client={client}>
       <NavBar />
 
       <div
@@ -154,6 +164,7 @@ function MyApp({ Component, pageProps }) {
 
       <Component {...pageProps} />
       <Footer />
+      </ApolloProvider>
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />
     </>
   );

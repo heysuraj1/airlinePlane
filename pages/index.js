@@ -13,7 +13,7 @@ const index = () => {
       <div className="tm-main-content" id="top">
         <div className="tm-top-bar-bg" />
         <HeroForm />
-        <Motive />
+        {/* <Motive /> */}
         <Section />
         <MidImage/>
         <Info />

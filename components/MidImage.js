@@ -1,6 +1,40 @@
 import { Parallax } from "react-parallax";
+import Link from "next/link";
+import { FILTER_TICKETS } from "../gqloperations/queries";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { useState } from "react";
+import Head from "next/head";
+import {BACKEND_URL} from '../helper/baseUrl'
+
 
 const MidImage = () => {
+  const [depart,setDepart] = useState();
+  const [desti,setDesti] = useState();
+  const [date,setDate] = useState();
+
+  const [getTicket,{data,loading,error}] =   useLazyQuery(FILTER_TICKETS,{
+    variables:{
+      "filters": {
+        "Depart_place": {
+          "startsWith": "India"
+        },
+        "Arrival_place": {
+          "startsWith": "New York"
+        },
+        "Date": {
+          "gt": "2022-03-02"
+        }
+      }
+    }
+  })
+
+
+
+
+
+
+
+
   return (
     <div>
       <Parallax
