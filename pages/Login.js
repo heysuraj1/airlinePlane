@@ -1,6 +1,57 @@
 import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../gqloperations/mutations";
+import { useRouter } from "next/router";
 
 const Login = () => {
+
+  useEffect(()=>{
+
+    const jwt = localStorage.getItem('jwt')
+
+  },[]);
+
+
+
+
+  const router = useRouter()
+
+  const [formData, setFormData] = useState({});
+
+  const [loginUser,{loading,error,data}] = useMutation(LOGIN_USER)
+
+
+  if (loading) return <h3>Jumping Into Your Account, Please Wait...</h3>
+  if (data) {
+    localStorage.setItem("jwt", data.login.jwt);
+    router.reload('/Flights')
+    router.push('/')
+  }
+
+
+
+
+ 
+  const handleChange =  (e) =>{
+  
+
+    setFormData({
+      ...formData,
+        [e.target.name] : e.target.value
+    })
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    loginUser({
+      variables:{
+        input: formData
+      }
+    })
+   
+  }
+
   return (
     <div>
       <div className="container" style={{ marginTop: "150px" }}>
@@ -8,22 +59,24 @@ const Login = () => {
       </div>
       <div className="container">
         <div className="tm-bg-white tm-p-4">
-          <form action="index.html" method="post" className="contact-form">
+          <form onSubmit={handleSubmit} className="contact-form">
             <div className="form-group">
               <input
                 type="email"
-                name="contact_email"
                 className="form-control"
                 placeholder="Email"
+                onChange={handleChange}
+                name='identifier'
                 required
               />
             </div>
             <div className="form-group">
               <input
                 type="password"
-                name="contact_subject"
                 className="form-control"
                 placeholder="Password"
+                onChange={handleChange}
+                name='password'
                 required
               />
             </div>

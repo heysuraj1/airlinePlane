@@ -6,10 +6,20 @@ import Footer from "../components/Footer";
 import Info from "../components/info/Info";
 import Section from "../components/Section";
 import MidImage from "../components/MidImage";
+import {GET_USER} from '../gqloperations/queries'
+import Link from 'next/link'
+import { useQuery } from "@apollo/client";
 
-const index = () => {
+
+const Index = () => {
+
+ 
+
+
+
   return (
     <div>
+      
       <div className="tm-main-content" id="top">
         <div className="tm-top-bar-bg" />
         <HeroForm />
@@ -23,4 +33,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

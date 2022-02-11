@@ -1,6 +1,40 @@
 import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import { REGISTER_USER } from "../gqloperations/mutations";
+import { useRouter } from "next/router";
 
 const Signup = () => {
+  const router = useRouter();
+  const [formData, setFormData] = useState({});
+
+  const [loginUser, { loading, error, data }] = useMutation(REGISTER_USER);
+
+  if (loading) return <h3>Creating Your Account, Please Wait...</h3>;
+
+  if (data) {
+    localStorage.setItem("jwt", data.register.jwt);
+    router.reload("/");
+  }
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData)
+    loginUser({
+      variables: {
+        input: formData,
+      },
+    });
+    console.log(data);
+  };
+
   return (
     <div>
       <div className="container" style={{ marginTop: "150px" }}>
@@ -8,31 +42,34 @@ const Signup = () => {
       </div>
       <div className="container">
         <div className="tm-bg-white tm-p-4">
-          <form action="index.html" method="post" className="contact-form">
+          <form onSubmit={handleSubmit} className="contact-form">
             <div className="form-group">
               <input
                 type="text"
-                name="contact_name"
                 className="form-control"
-                placeholder="Name"
+                placeholder="Username"
+                onChange={handleChange}
+                name="username"
                 required
               />
             </div>
             <div className="form-group">
               <input
                 type="email"
-                name="contact_email"
                 className="form-control"
                 placeholder="Email"
+                onChange={handleChange}
+                name="email"
                 required
               />
             </div>
             <div className="form-group">
               <input
-                type="text"
-                name="contact_subject"
+                type="password"
                 className="form-control"
-                placeholder="Subject"
+                placeholder="Password"
+                onChange={handleChange}
+                name="password"
                 required
               />
             </div>

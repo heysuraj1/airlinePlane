@@ -23,3 +23,22 @@ query FlightTickets($filters: FlightTicketFiltersInput) {
 
 
 `
+
+export const GET_USER = gql `
+
+
+query Me {
+  me {
+    id
+    username
+    email
+    confirmed
+    blocked
+  }
+}
+
+
+
+
+
+`

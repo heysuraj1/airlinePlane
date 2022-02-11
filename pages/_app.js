@@ -6,8 +6,9 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import { BACKEND_URL } from "../helper/baseUrl";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-
-
+import { useEffect, useState } from "react";
+import Login from "./Login";
+import { Lines } from "react-preloaders";
 
 const client = new ApolloClient({
   uri: `${BACKEND_URL}/graphql`,
@@ -15,6 +16,11 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps }) {
+  typeof window !== "undefined" && localStorage.getItem("jwt") ? (
+    console.log('Welcome')
+    ) : (
+    <Login />
+  )
   return (
     <>
       <Head>
@@ -45,126 +51,14 @@ function MyApp({ Component, pageProps }) {
           crossOrigin="anonymous"
         ></script>
       </Head>
+
       <ApolloProvider client={client}>
-      <NavBar />
+        <NavBar />
 
-      <div
-        className="modal"
-        id="exampleModal"
-        tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-        style={{ marginTop: "130px" }}
-      >
-        <div
-          className="modal-dialog modal-dialog-centered"
-          style={{ borderRadius: "50px" }}
-        >
-          <div className="modal-content">
-            <div className="container-fluid">
-              <ul className="list-group mt-3 mb-3">
-                <li className="p-1">
-                  <Link href="/">
-                    <button
-                      type="button"
-                      style={{ width: "100%" }}
-                      className="btn btn-primary"
-                      data-bs-dismiss="modal"
-                    >
-                      <i
-                        style={{ fontSize: "20px", cursor: "pointer" }}
-                        className="shopicon bi bi-house-fill "
-                      >
-                        {" "}
-                      </i>
-                      HOME
-                    </button>
-                  </Link>
-                </li>
-                <li className="p-1">
-                  <Link href="/Flights">
-                    <button
-                      type="button"
-                      style={{ width: "100%" }}
-                      className="btn btn-primary"
-                      data-bs-dismiss="modal"
-                    >
-                      Flights
-                    </button>
-                  </Link>
-                </li>
-                <li className="p-1">
-                  <Link href="/BookTickets">
-                    <button
-                      type="button"
-                      style={{ width: "100%" }}
-                      className="btn btn-primary"
-                      data-bs-dismiss="modal"
-                    >
-                      Book Tickets
-                    </button>
-                  </Link>
-                </li>
-                <li className="p-1">
-                  <Link href="/Contact">
-                    <button
-                      type="button"
-                      style={{ width: "100%" }}
-                      className="btn btn-primary"
-                      data-bs-dismiss="modal"
-                    >
-                      Contact Us
-                    </button>
-                  </Link>
-                </li>
-                {/* <li className="p-1">
-                  <Link href="/Ayurvedik">
-                    <button
-                      type="button"
-                      style={{ width: "100%" }}
-                      className="btn btn-primary"
-                      data-bs-dismiss="modal"
-                    >
-                      Ayurveda
-                    </button>
-                  </Link>
-                </li> */}
-
-                {/* <li className="p-1">
-                  <Link href="/contact">
-                    <button
-                      type="button"
-                      style={{ width: "100%" }}
-                      className="btn btn-primary"
-                      data-bs-dismiss="modal"
-                    >
-                      Contact
-                    </button>
-                  </Link>
-                </li> */}
-                <li className="p-1">
-                  <Link href="/Login">
-                    <div className="text-center mt-2">
-                      <button
-                        type="button"
-                        style={{ width: "70%", borderRadius: "100px" }}
-                        className="btn btn-info"
-                        data-bs-dismiss="modal"
-                      >
-                        LOGIN
-                      </button>
-                    </div>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <Component {...pageProps} />
-      <Footer />
+          <Component {...pageProps} />
+        <Footer />
       </ApolloProvider>
+
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />
     </>
   );
