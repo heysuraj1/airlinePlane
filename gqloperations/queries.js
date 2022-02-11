@@ -42,3 +42,30 @@ query Me {
 
 
 `
+
+export const GET_ALL_FLIGHTS = gql `
+
+
+query FlightTickets {
+  flightTickets {
+    data {
+      id
+      attributes {
+        Depart_place
+        Depart
+        Arrival_place
+        Arrival
+        Date
+        Price
+        Extra_info
+        
+      }
+    }
+    
+  }
+}
+
+
+
+
+`

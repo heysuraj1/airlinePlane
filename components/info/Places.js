@@ -15,8 +15,8 @@ const Places = () => {
               Nullam sollicitudin at augue venenatis eleifend. Nulla ligula
               ligula, egestas sit amet viverra id, iaculis sit amet ligula.
             </p>
-            <a style={{width:'40%'}}  className="text-uppercase btn-primary tm-btn-primary bg-info text-white">
-              Read More
+            <a href='tel:+9112345678' style={{width:'40%'}}  className="text-uppercase btn-primary tm-btn-primary bg-info text-white">
+              Call Us Now
             </a>
           </div>
         </article>

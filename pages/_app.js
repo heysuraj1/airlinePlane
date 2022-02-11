@@ -9,6 +9,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { useEffect, useState } from "react";
 import Login from "./Login";
 import { Lines } from "react-preloaders";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const client = new ApolloClient({
   uri: `${BACKEND_URL}/graphql`,
@@ -24,7 +26,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <div>
+     
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,17 +45,21 @@ function MyApp({ Component, pageProps }) {
             integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
             crossOrigin="anonymous"
           ></link>
-        </div>
-        <script
-          defer
-          src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
-          integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
-          crossOrigin="anonymous"
-        ></script>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
+
+       
+        
       </Head>
 
       <ApolloProvider client={client}>
+      <a
+        href="https://api.whatsapp.com/send?phone=+91123456789&text=Hii."
+        className="float"
+      >
+       <i style={{fontSize:'40px'}} className="fab fa-whatsapp mt-2"></i>
+      </a>
         <NavBar />
+        <ToastContainer />
 
           <Component {...pageProps} />
         <Footer />

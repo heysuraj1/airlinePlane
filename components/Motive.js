@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const Motive = () => {
   return (
     <div className="tm-section-2">
@@ -8,7 +10,7 @@ const Motive = () => {
             <p className="tm-color-white tm-section-subtitle">
               call on our Customer Support , just click on the button below.
             </p>
-            <a href="#" style={{textDecoration:'none'}} className="tm-color-white tm-btn-white-bordered mb-5">
+            <a href="tel:+911234567" style={{textDecoration:'none'}} className="tm-color-white tm-btn-white-bordered mb-5">
               Call Us Now
             </a>
           </div>

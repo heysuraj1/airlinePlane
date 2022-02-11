@@ -38,3 +38,21 @@ mutation Login($input: UsersPermissionsLoginInput!) {
 
 
 `
+
+export const POST_CONTACT = gql`
+
+mutation CreateContact($data: ContactInput!) {
+  createContact(data: $data) {
+    data {
+      attributes {
+        Name
+        Email
+        Subject
+        Message
+      }
+    }
+  }
+}
+
+
+`
