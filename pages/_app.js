@@ -11,6 +11,7 @@ import Login from "./Login";
 import { Lines } from "react-preloaders";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CartProvider } from "react-use-cart";
 
 const client = new ApolloClient({
   uri: `${BACKEND_URL}/graphql`,
@@ -58,11 +59,13 @@ function MyApp({ Component, pageProps }) {
       >
        <i style={{fontSize:'40px'}} className="fab fa-whatsapp mt-2"></i>
       </a>
+      <CartProvider>
         <NavBar />
         <ToastContainer />
 
           <Component {...pageProps} />
         <Footer />
+        </CartProvider>
       </ApolloProvider>
 
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />

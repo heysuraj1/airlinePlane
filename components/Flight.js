@@ -1,9 +1,12 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
-
 import { GET_ALL_FLIGHTS } from "../gqloperations/queries";
+import { CartProvider, useCart } from "react-use-cart";
+import { useRouter } from "next/router";
 
 const Flight = () => {
+  const router = useRouter();
+  const { addItem } = useCart();
   const { loading, data, error } = useQuery(GET_ALL_FLIGHTS);
 
   if (data) console.log(data);
@@ -15,18 +18,20 @@ const Flight = () => {
       </h3>
     );
 
+  const addToCart = (ed, prico) => {
+    addItem({
+      id: ed,
+      price: prico,
+    });
+    router.push("/BookTickets");
+  };
+
   return (
     <div>
       <div className="container-fluid mt-5">
         <div className="container-fluid">
           <div className="row">
             {data.flightTickets.data.map((hit) => {
-              let jana = parseInt(hit.attributes.Depart.slice(0, 5));
-              let pahuchna = parseInt(hit.attributes.Arrival.slice(0, 5));
-
-              let samay = jana - pahuchna;
-              console.log(samay);
-
               return (
                 <div className="col-sm-12 mt-3" key={hit.id}>
                   <div className="container-fluid">
@@ -39,18 +44,21 @@ const Flight = () => {
                           alt=""
                         />
                       </div>
+                      <div className="col mt-3">Flight Name Here</div>
                       <div className="col mt-3">
                         {hit.attributes.Depart.slice(0, 5)}&nbsp;
                         <i className="fas fa-arrow-alt-circle-right"> </i>&nbsp;
                         {hit.attributes.Arrival.slice(0, 5)}
                       </div>
-                      <div className="col mt-3">4 hr 15 min</div>
                       <div className="col mt-3">₹{hit.attributes.Price}</div>
                       <div className="col mt-3">
                         <div className="text-center">
                           <button
                             style={{ width: "100%", cursor: "pointer" }}
                             className="btn btn-info"
+                            onClick={() =>
+                              addToCart(hit.id, hit.attributes.Price)
+                            }
                           >
                             BOOK
                           </button>

@@ -5,8 +5,16 @@ import { useLazyQuery, useQuery } from "@apollo/client";
 import Head from "next/head";
 import { BACKEND_URL } from "../helper/baseUrl";
 import Motive from "../components/Motive";
+import { useCart } from "react-use-cart";
+import { CartProvider } from "react-use-cart";
+import { useRouter } from 'next/router'
+
+
+
 
 const HeroForm = () => {
+  const { addItem } = useCart();
+  const router = useRouter()
   const [depart, setDepart] = useState("");
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState("");
@@ -53,6 +61,24 @@ const HeroForm = () => {
     // console.log({depart, destination, date, adult, kids, type});
     getTicket();
   };
+
+
+
+  const addToCart = (ed,prico) =>{
+    addItem({
+      id:ed,
+      price:prico
+  
+    })
+    router.push('/BookTickets')
+  }
+  
+  
+
+
+
+
+
 
   return (
     <div>
@@ -112,18 +138,20 @@ const HeroForm = () => {
                                   alt=""
                                 />
                               </div>
+                              <div className="col mt-3">Flight Name Here</div>
                               <div className="col mt-3">
                                 07:45{" "}
                                 <i className="fas fa-arrow-alt-circle-right"></i>{" "}
                                 12:00
                               </div>
-                              <div className="col mt-3">4 hr 15 min</div>
-                              <div className="col mt-3">₹3988</div>
+                              <div className="col mt-3">₹{hit.attributes.Price}</div>
                               <div className="col mt-3">
                                 <div className="text-center">
                                   <button
                                     style={{ width: "100%", cursor: "pointer" }}
                                     className="btn btn-info"
+                                    onClick={()=>addToCart(hit.id,hit.attributes.Price)}
+                                    data-bs-dismiss="modal"
                                   >
                                     BOOK
                                   </button>
