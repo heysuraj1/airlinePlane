@@ -58,6 +58,7 @@ const FormCompo = () => {
         // alert(response.razorpay_payment_id);
         // alert(response.razorpay_order_id);
         // alert(response.razorpay_signature);
+        handleSubmit()
         emptyCart()
         router.push('/')
       },
@@ -67,10 +68,13 @@ const FormCompo = () => {
     paymentObject.open();
   };
 
-  const handleSubmit = (e) => {
+  const handleNext = (e) => {
     e.preventDefault();
-    console.log("Form Submitted");
     setShow(true);
+  };
+  const handleSubmit = () => {
+    console.log("Form Submitted");
+
   };
 
   return (
@@ -94,7 +98,7 @@ const FormCompo = () => {
             <div className="row g-5">
               <div className="container px-5">
                 <h4 className="mb-3">Enter Your Address</h4>
-                <form className="needs-validation" onSubmit={handleSubmit}>
+                <form className="needs-validation" onSubmit={handleNext}>
                   <div className="row g-3">
                     <div className="col-sm-6 ">
                       <label htmlFor="firstName" className="form-label">

@@ -87,7 +87,7 @@ const NavBar = () => {
                   <>
                   <li className="nav-item">
                     <Link href="/MyTickets">
-                      <a className={`nav-link  ${isActive("/Login")}`}>
+                      <a className={`nav-link  ${isActive("/MyTickets")}`}>
                         My Tickets
                       </a>
                     </Link>
