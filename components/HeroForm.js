@@ -7,30 +7,165 @@ import { BACKEND_URL } from "../helper/baseUrl";
 import Motive from "../components/Motive";
 import { useCart } from "react-use-cart";
 import { CartProvider } from "react-use-cart";
-import { useRouter } from 'next/router'
-
-
-
+import { useRouter } from "next/router";
+import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
+import "react-bootstrap-typeahead/css/Typeahead.css";
 
 const HeroForm = () => {
   const { addItem } = useCart();
-  const router = useRouter()
-  const [depart, setDepart] = useState("");
-  const [destination, setDestination] = useState("");
+  const router = useRouter();
+  const [depart, setDepart] = useState([]);
+  const [destination, setDestination] = useState([]);
   const [date, setDate] = useState("");
   const [adult, setAdult] = useState("");
   const [kids, setKids] = useState("");
   const [type, setType] = useState("");
   const [show, setShow] = useState("");
 
+  const codes = [
+    "( AGX ) Agatti Island Airport",
+    "( AMD ) Ahmedabad Airport",
+    "( AJL ) Aizawl Airport",
+    "( AKD ) Akola Airport",
+    "( IXV ) Along Airport",
+    "( LKO ) Amausi Airport",
+    "( LUH ) Amritsar Airport",
+    "( IXB ) Bagdogra Airport",
+    "( IXE ) Bajpe Airport",
+    "( IXL ) Bakula Rimpoche Airport",
+    "( RGH ) Balurghat Airport",
+    "( IXD ) Bamrauli Airport",
+    "( SHL ) Barapani Airport",
+    "( BEK ) Bareli Airport",
+    "( BEP ) Bellary Airport",
+    "( BLR ) Bengaluru International Airport",
+    "( BUP ) Bhatinda Airport",
+    "( IXB ) Bagdogra Airport",
+    "( BHU ) Bhavnagar Airport",
+    "( BHO ) Bhopal Airport",
+    "( BBI ) Bhubaneswar Airport",
+    "( BKB ) Bikaner Airport",
+    "( PAB ) Bilaspur Airport",
+    "( IXR ) Birsa Munda International Airport",
+    "( GAU ) Borjhar Airport",
+    "( CBD ) Car Nicobar Airport",
+    "( IXC ) Chandigarh Airport",
+    "( MAA ) Chennai International Airport",
+    "( BOM ) Chhatrapati Shivaji International Airport",
+    "( IXU ) Chikkalthana Airport",
+    "( COK ) Cochin International Airport",
+    "( COH ) Cooch Behar Airport",
+    "( CDP ) Cuddapah Airport",
+    "( UDR ) Dabok Airport",
+    "( GOI ) Dabolim Airport",
+    "( NMB ) Daman Airport",
+    "( DAE ) Daparizo Airport",
+    "( DAI ) Darjeeling Airport",
+    "( DED ) Dehra Dun Airport",
+    "( DEP ) Deparizo Airport",
+    "( IDR ) Devi Ahilyabai Holkar Airport",
+    "( DBD ) Dhanbad Airport",
+    "( DIB ) Dibrugarh Airport",
+    "( DMU ) Dimapur Airport",
+    "( DIU ) Diu Airport",
+    "( DHM ) Gaggal Airport",
+    "( ISK ) Gandhinagar Airport",
+    "( GAY ) Gaya Airport",
+    "( GOP ) Gorakhpur Airport",
+    "( JGA ) Govardhanpur Airport",
+    "( GUX ) Guna Airport",
+    "( GWL ) Gwalior Airport",
+    "( HSS ) Hissar Airport",
+    "( HBX ) Hubli Airport",
+    "( HYD ) Hyderabad International Airport",
+    "( DEL ) Indira Gandhi International Airport",
+    "( JLR ) Jabalpur Airport",
+    "( JGB ) Jagdalpur Airport",
+    "( JSA ) Jaisalmer Airport",
+    "( PYB ) Jeypore Airport",
+    "( JDH ) Jodhpur Airport",
+    "( IXH ) Kailashahar Airport",
+    "( IXQ ) Kamalpur Airport",
+    "( IXY ) Kandla Airport",
+    "( KNU ) Kanpur Airport",
+    "( IXK ) Keshod Airport",
+    "( HJR ) Khajuraho Airport",
+    "( AGR ) Kheria Airport",
+    "( IXN ) Khowai Airport",
+    "( KLH ) Kolhapur Airport",
+    "( KTU ) Kota Airport",
+    "( CCJ ) Kozhikode Airport",
+    "( KUU ) Kullu Manali Airport",
+    "( IXS ) Kumbhirgram Airport",
+    "( IXI ) Lilabari Airport",
+    "( PNQ ) Lohegaon Airport",
+    "( IXM ) Madurai Airport",
+    "( LDA ) Malda Airport",
+    "( MOH ) Mohanbari Airport",
+    "( IMF ) Municipal Airport",
+    "( MZA ) Muzaffarnagar Airport",
+    "( MZU ) Muzaffarpur Airport",
+    "( MYQ ) Mysore Airport",
+    "( NDC ) Nanded Airport",
+    "( CCU ) Netaji Subhash Chandra Bose International Airport",
+    "( NVY ) Neyveli Airport",
+    "( OMN ) Osmanabad Airport",
+    "( PGH ) Pantnagar Airport",
+    "( IXT ) Pasighat Airport",
+    "( IXP ) Pathankot Airport",
+    "( PAT ) Patna Airport",
+    "( CJB ) Peelamedu Airport",
+    "( PNY ) Pondicherry Airport",
+    "( PBD ) Porbandar Airport",
+    "( IXZ ) Port Blair Airport",
+    "( PUT ) Puttaparthi Airport",
+    "( RPR ) Raipur Airport",
+    "( ATQ ) Raja Sansi Airport",
+    "( RJA ) Rajahmundry Airport",
+    "( RAJ ) Rajkot Airport",
+    "( RJI ) Rajouri Airport",
+    "( RMD ) Ramagundam Airport",
+    "( RTC ) Ratnagiri Airport",
+    "( REW ) Rewa Airport",
+    "( RRK ) Rourkela Airport",
+    "( JRH ) Rowriah Airport",
+    "( BHJ ) Rudra Mata Airport",
+    "( RUP ) Rupsi Airport",
+    "( SXV ) Salem Airport",
+    "( TEZ ) Salonibari Airport",
+    "( IXG ) Sambre Airport",
+    "( JAI ) Sanganeer Airport",
+    "( TNI ) Satna Airport",
+    "( IXJ ) Satwari Airport",
+    "( SSE ) Sholapur Airport",
+    "( SLV ) Simla Airport",
+    "( IXA ) Singerbhil Airport",
+    "( IXW ) Sonari Airport",
+    "( NAG ) Sonegaon Airport",
+    "( SXR ) Srinagar Airport",
+    "( STV ) Surat Airport",
+    "( TEI ) Tezu Airport",
+    "( TJV ) Thanjavur Airport",
+    "( TRV ) Thiruvananthapuram International Airport",
+    "( TIR ) Tirupati Airport",
+    "( TRZ ) Trichy Airport",
+    "( TCR ) Tuticorin Airport",
+    "( BDQ ) Vadodara Airport",
+    "( VNS ) Varanasi Airport",
+    "( VGA ) Vijayawada Airport",
+    "( VTZ ) Vishakhapatnam Airport",
+    "( WGC ) Warangal Airport",
+    "( ZER ) Zero Airport",
+  ];
+
   const [getTicket, { data, loading, error }] = useLazyQuery(FILTER_TICKETS, {
     variables: {
       filters: {
         Depart_place: {
-          startsWith: depart,
+          contains: depart.toString().slice(2, 5),
         },
         Arrival_place: {
-          startsWith: destination,
+          contains: destination.toString().slice(2, 5),
         },
         Date: {
           gt: date,
@@ -60,25 +195,20 @@ const HeroForm = () => {
     e.preventDefault();
     // console.log({depart, destination, date, adult, kids, type});
     getTicket();
+
+    console.log(
+      depart.toString().slice(2, 5),
+      destination.toString().slice(2, 5)
+    );
   };
 
-
-
-  const addToCart = (ed,prico) =>{
+  const addToCart = (ed, prico) => {
     addItem({
-      id:ed,
-      price:prico
-  
-    })
-    router.push('/BookTickets')
-  }
-  
-  
-
-
-
-
-
+      id: ed,
+      price: prico,
+    });
+    router.push("/BookTickets");
+  };
 
   return (
     <div>
@@ -97,37 +227,32 @@ const HeroForm = () => {
             {/* <h2 className="text-center mt-3">All Available Flights</h2> */}
 
             <div className="container mt-3">
-                {
-                  error ? 
+              {error ? (
+                <div className="text-center">
+                  <h3 className="text-center text-info mt-4">
+                    Please Fill All The Details
+                  </h3>
                   <div className="text-center">
-
-
-                  <h3 className="text-center text-info mt-4">Please Fill All The Details</h3>
-                  <div className="text-center">
-                    <img src="https://thumbs.dreamstime.com/b/simple-red-stop-roadsign-big-hand-symbol-icon-vector-illustration-no-entry-sign-isolated-white-background-183286215.jpg" className="img-fluid" alt="" />
+                    <img
+                      src="https://thumbs.dreamstime.com/b/simple-red-stop-roadsign-big-hand-symbol-icon-vector-illustration-no-entry-sign-isolated-white-background-183286215.jpg"
+                      className="img-fluid"
+                      alt=""
+                    />
                   </div>
-                  </div>
-                  
-
-                  :
-
-                  ""
-                }
-                {loading ? (
-                  <h3 className="text-center mt-4">Loading Please Wait...</h3>
-                ) : (
-                  ""
-                )}
+                </div>
+              ) : (
+                ""
+              )}
+              {loading ? (
+                <h3 className="text-center mt-4">Loading Please Wait...</h3>
+              ) : (
+                ""
+              )}
               <div className="row">
-                
-
                 {data
-                  ? 
-                  
-                  data.flightTickets.data.map((hit) => {
+                  ? data.flightTickets.data.map((hit) => {
                       return (
                         <div className="col-sm-12 mb-2" key={hit.id}>
-                          
                           <div className="container-fluid">
                             <div className="row bord">
                               <div className="col">
@@ -144,13 +269,17 @@ const HeroForm = () => {
                                 <i className="fas fa-arrow-alt-circle-right"></i>{" "}
                                 12:00
                               </div>
-                              <div className="col mt-3">₹{hit.attributes.Price}</div>
+                              <div className="col mt-3">
+                                ₹{hit.attributes.Price}
+                              </div>
                               <div className="col mt-3">
                                 <div className="text-center">
                                   <button
                                     style={{ width: "100%", cursor: "pointer" }}
                                     className="btn btn-info"
-                                    onClick={()=>addToCart(hit.id,hit.attributes.Price)}
+                                    onClick={() =>
+                                      addToCart(hit.id, hit.attributes.Price)
+                                    }
                                     data-bs-dismiss="modal"
                                   >
                                     BOOK
@@ -162,8 +291,6 @@ const HeroForm = () => {
                         </div>
                       );
                     })
-
-                    
                   : ""}
               </div>
             </div>
@@ -179,30 +306,38 @@ const HeroForm = () => {
                 <form
                   onSubmit={handleSubmit}
                   className="tm-search-form tm-section-pad-2"
+                  autoComplete="on"
                 >
                   <div className="form-row tm-search-form-row">
                     <div className="form-group tm-form-element tm-form-element-100">
                       <i className="fa fa-map-marker fa-2x tm-form-element-icon" />
-                      <input
+                      <Typeahead
                         name="city"
                         type="text"
-                        className="form-control"
                         // here
-                        value={depart}
-                        onChange={(e) => setDepart(e.target.value)}
+                        // value={depart}
+                        // onChange={setDepart}
+                        onChange={setDepart}
+                        selected={depart}
                         placeholder="Depart..."
+                        autoComplete="name"
+                        options={codes}
+                        id="basic-typeahead-single"
                       />
                     </div>
                     <div className="form-group tm-form-element tm-form-element-100">
                       <i className="fa fa-map-marker fa-2x tm-form-element-icon" />
-                      <input
+                      <Typeahead
                         name="city"
                         type="text"
-                        className="form-control"
                         // here
-                        value={destination}
-                        onChange={(e) => setDestination(e.target.value)}
+                        // value={destination}
+                        // onChange={(e)=>setDestination(e.target.value)}
+                        onChange={setDestination}
                         placeholder="Destination..."
+                        options={codes}
+                        selected={destination}
+                        id="basic-typeahead-multiple"
                       />
                     </div>
 

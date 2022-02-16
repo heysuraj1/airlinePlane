@@ -11,12 +11,24 @@ const NavBar = () => {
       return "active";
     } else return "";
   }
+  useEffect(()=>{
+    setShow(false);
 
-  useEffect(() => {
-    typeof window !== "undefined" && localStorage.getItem("jwt")
-      ? setShow(true)
-      : setShow(false);
-  }, []);
+    if (window !== "undefined" && localStorage.getItem("jwt")) {
+      setShow(true)
+    } else {
+      setShow(false);
+    }
+
+  },[])
+
+
+
+
+    // typeof window !== "undefined" && localStorage.getItem("jwt")
+    //   ? setShow(true)
+    //   : setShow(false);
+  
 
   return (
     <div className="tm-top-bar">
@@ -71,7 +83,15 @@ const NavBar = () => {
                     </a>
                   </Link>
                 </li>
-                {show ? (
+                {typeof window !== "undefined" && localStorage.getItem("jwt") ? (
+                  <>
+                  <li className="nav-item">
+                    <Link href="/MyTickets">
+                      <a className={`nav-link  ${isActive("/Login")}`}>
+                        My Tickets
+                      </a>
+                    </Link>
+                  </li>
                   <li className="nav-item">
                     <Link href="/Login">
                       <a onClick={()=>{localStorage.clear("jwt")} } className={`nav-link  ${isActive("/Login")}`}>
@@ -79,6 +99,7 @@ const NavBar = () => {
                       </a>
                     </Link>
                   </li>
+                  </>
                 ) : (
                   <>
                     <li className="nav-item">

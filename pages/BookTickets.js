@@ -1,18 +1,27 @@
 import Link from "next/link";
 import { useCart } from "react-use-cart";
-import Flight from '../components/Flight'
+import Flight from "../components/Flight";
+import FormCompo from "../components/FormCompo";
+import { useState, useEffect } from "react";
 
 const BookTickets = () => {
-  const { isEmpty, items, removeItem ,cartTotal,emptyCart} = useCart();
+  const { isEmpty, items, removeItem, cartTotal, emptyCart } = useCart();
+  const [show, setShow] = useState();
+
+  useEffect(() => {
+    setShow(false);
+  }, []);
 
   if (isEmpty)
-    return(
-
+    return (
       <>
-     <h1 className="text-center" style={{ marginTop: "200px" }}>Please Book A Flight First</h1>;
-     <Flight/>
-    </>
-      )
+        <h1 className="text-center" style={{ marginTop: "200px" }}>
+          Please Book A Flight First
+        </h1>
+        ;
+        <Flight />
+      </>
+    );
   if (items) console.log(items);
 
   const removeFlight = (e) => {
@@ -73,64 +82,88 @@ const BookTickets = () => {
     paymentObject.open();
   };
 
+  const makeForm = () => {
+    setShow(true);
+  };
+
   return (
     <div style={{ marginTop: "150px" }}>
-      <div className="container">
-        <h3 className="text-center">Your Flights Are Waiting To Be Booked.</h3>
-      </div>
+      {show ? (
+        <FormCompo />
+      ) : (
+        <>
+          <div className="container">
+            <h3 className="text-center">
+              Your Flights Are Waiting To Be Booked.
+            </h3>
+          </div>
 
-      <div className="container-fluid mt-5">
-        <div className="container-fluid">
-          <div className="row">
-            {items.map((hit) => {
-              return (
-                <div className="col-sm-12 mt-3" key={hit.id}>
-                  <div className="container-fluid">
-                    <div className="row bord">
-                      <div className="col">
-                        <img
-                          width={50}
-                          src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                          className="img-fluid"
-                          alt=""
-                        />
+          <div className="container-fluid mt-5">
+            <div className="container-fluid">
+              <div className="row">
+                {items.map((hit) => {
+                  return (
+                    <div className="col-sm-12 mt-3" key={hit.id}>
+                      <div className="container-fluid">
+                        <div className="row bord">
+                          <div className="col">
+                            <img
+                              width={50}
+                              src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
+                              className="img-fluid"
+                              alt=""
+                            />
+                          </div>
+                          <div className="col mt-3">Flight Name Here</div>
+                          <div className="col mt-3">
+                            07:45{" "}
+                            <i className="fas fa-arrow-alt-circle-right"></i>{" "}
+                            12:00
+                          </div>
+                          <div className="col mt-3">₹{hit.price}</div>
+
+                          <div className="col mt-3">
+                            <div className="text-center">
+                              <button
+                                style={{ width: "100%", cursor: "pointer" }}
+                                className="btn btn-danger"
+                                onClick={() => removeFlight(hit.id)}
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="col mt-3">Flight Name Here</div>
-                      <div className="col mt-3">
-                        07:45 <i className="fas fa-arrow-alt-circle-right"></i>{" "}
-                        12:00
-                      </div>
-                      <div className="col mt-3">₹{hit.price}</div>
-                      <div className="col mt-3">
-                        <div className="text-center">
-                          <button
+                    </div>
+                  );
+                })}
+              </div>
+              <div
+                style={{ marginTop: "50px", marginBottom: "60px" }}
+                className="container "
+              >
+                <div className="text-center">
+                  <button
+                    style={{ width: "50%", cursor: "pointer" }}
+                    className="btn btn-info"
+                    onClick={() => makeForm()}
+                  >
+                    BOOK
+                  </button>
+                  {/* <button
                             style={{ width: "100%", cursor: "pointer" }}
                             className="btn btn-info"
                             onClick={() => makePayment()}
                           >
                             BOOK
-                          </button>
-                        </div>
-                      </div>
-                      <div className="col mt-3">
-                        <div className="text-center">
-                          <button
-                            style={{ width: "100%", cursor: "pointer" }}
-                            className="btn btn-danger"
-                            onClick={() => removeFlight(hit.id)}
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                          </button> */}
                 </div>
-              );
-            })}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

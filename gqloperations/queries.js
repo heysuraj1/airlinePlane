@@ -69,3 +69,35 @@ query FlightTickets {
 
 
 `
+
+export const GET_INDIVIDUAL_TICKET = gql`
+
+query UsersPermissionsUser($usersPermissionsUserId: ID) {
+  usersPermissionsUser(id: $usersPermissionsUserId) {
+    data {
+      attributes {
+        username
+        email
+        user_tickets {
+          data {
+            id
+            attributes {
+              Arrival
+              Depart
+              Date
+              PDF {
+                data {
+                  id
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`

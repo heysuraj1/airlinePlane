@@ -647,7 +647,7 @@ video {
 
 @media screen and (max-width: 767px) and (min-width: 524px) {
   .tm-search-form .tm-form-element-100 {
-    width: 100%;
+    /* width: 100%; */
     max-width: none;
   }
 

@@ -14,7 +14,7 @@ const Signup = () => {
 
   if (data) {
     localStorage.setItem("jwt", data.register.jwt);
-    router.reload("/");
+    router.push("/");
   }
 
   const handleChange = (e) => {
@@ -40,6 +40,13 @@ const Signup = () => {
       <div className="container" style={{ marginTop: "150px" }}>
         <h2 className="text-dark text-center">REGISTER HERE</h2>
       </div>
+      {error && (
+                <div className="mt-5">
+                  <h1 className="text-center mt-5 text-danger">
+                    {error.message}
+                  </h1>
+                </div>
+              )}
       <div className="container">
         <div className="tm-bg-white tm-p-4">
           <form onSubmit={handleSubmit} className="contact-form">
