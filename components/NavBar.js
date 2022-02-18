@@ -59,44 +59,44 @@ const NavBar = () => {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link href="/">
-                    <a className={`nav-link  ${isActive("/")}`}>Home </a>
+                    <b> <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/")}`}>Home </a> </b>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/Flights">
-                    <a className={`nav-link  ${isActive("/Flights")}`}>
+                    <b> <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/Flights")}`}>
                       Flights
-                    </a>
+                    </a></b>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/BookTickets">
-                    <a className={`nav-link  ${isActive("/BookTickets")}`}>
+                  <b>  <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/BookTickets")}`}>
                       Book Tickets
-                    </a>
+                    </a> </b>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/Contact">
-                    <a className={`nav-link  ${isActive("/Contact")}`}>
+                  <b>  <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/Contact")}`}> 
                       Contact Us
-                    </a>
+                    </a> </b>
                   </Link>
                 </li>
                 {typeof window !== "undefined" && localStorage.getItem("jwt") ? (
                   <>
                   <li className="nav-item">
                     <Link href="/MyTickets">
-                      <a className={`nav-link  ${isActive("/MyTickets")}`}>
+                    <b>  <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/MyTickets")}`}>
                         My Tickets
-                      </a>
+                      </a></b>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link href="/Login">
-                      <a onClick={()=>{localStorage.clear("jwt")} } className={`nav-link  ${isActive("/Login")}`}>
+                    <b>  <a style={{fontWeight:'bolder'}} onClick={()=>{localStorage.clear("jwt")} } className={`nav-link  ${isActive("/Login")}`}>
                         LogOut
-                      </a>
+                      </a></b>
                     </Link>
                   </li>
                   </>
@@ -104,16 +104,16 @@ const NavBar = () => {
                   <>
                     <li className="nav-item">
                       <Link href="/Login">
-                        <a className={`nav-link  ${isActive("/Login")}`}>
+                       <b> <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/Login")}`}>
                           Login
-                        </a>
+                        </a> </b>
                       </Link>
                     </li>
                     <li className="nav-item">
                       <Link href="/Signup">
-                        <a className={`nav-link  ${isActive("/Signup")}`}>
+                      <b>  <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/Signup")}`}>
                           Signup
-                        </a>
+                        </a> </b>
                       </Link>
                     </li>
                   </>
