@@ -78,13 +78,13 @@ query UsersPermissionsUser($usersPermissionsUserId: ID) {
       attributes {
         username
         email
+        Pan_Card
+        Aadhar_Card
         user_tickets {
           data {
-            id
+           
             attributes {
-              Arrival
-              Depart
-              Date
+             Ticket_Purchased
               PDF {
                 data {
                   id
@@ -100,4 +100,23 @@ query UsersPermissionsUser($usersPermissionsUserId: ID) {
     }
   }
 }
+`
+
+export const CHEKING_CRED = gql`
+
+query UsersPermissionsUser($usersPermissionsUserId: ID) {
+  usersPermissionsUser(id: $usersPermissionsUserId) {
+    data {
+      id
+      attributes {
+        Aadhar_Card
+        Pan_Card
+        username
+        email
+      }
+    }
+  }
+}
+
+
 `

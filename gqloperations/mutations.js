@@ -56,3 +56,40 @@ mutation CreateContact($data: ContactInput!) {
 
 
 `
+
+export const POST_ORDER_IN_BACKEND = gql`
+
+mutation CreateUserTicket($data: UserTicketInput!) {
+  createUserTicket(data: $data) {
+    data {
+      attributes {
+        First_Name
+        Last_Name
+        Email
+        Number
+        Address
+        ZIP
+        Ticket_Purchased
+      }
+    }
+  }
+}
+
+`
+
+export const UPLOAD_KYC = gql`
+
+mutation UpdateUsersPermissionsUser($updateUsersPermissionsUserId: ID!, $data: UsersPermissionsUserInput!) {
+  updateUsersPermissionsUser(id: $updateUsersPermissionsUserId, data: $data) {
+    data {
+      attributes {
+        username
+        email
+        Aadhar_Card
+        Pan_Card
+      }
+    }
+  }
+}
+
+`

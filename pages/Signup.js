@@ -13,8 +13,22 @@ const Signup = () => {
   if (loading) return <h3>Creating Your Account, Please Wait...</h3>;
 
   if (data) {
-    localStorage.setItem("jwt", data.register.jwt);
-    router.push("/");
+    console.log(data);
+
+    let showList = {
+      jwt:data.register.jwt,
+      userid:data.register.user.id,
+      username:data.register.user.email
+    }
+
+
+
+
+
+    localStorage.setItem("jwt", JSON.stringify(showList));
+    // router.reload('/Flights')
+    router.push('/')
+  
   }
 
   const handleChange = (e) => {

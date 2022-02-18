@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "react-bootstrap-typeahead/css/Typeahead.css";
 
+
 const HeroForm = () => {
   const { addItem } = useCart();
   const router = useRouter();
@@ -227,6 +228,38 @@ const HeroForm = () => {
             {/* <h2 className="text-center mt-3">All Available Flights</h2> */}
 
             <div className="container mt-3">
+              {
+                data ?
+
+                
+                  data.flightTickets.data == 0 ?
+                  <div className="text-center">
+                    <h1 className="text-center text-info mt-4 text-danger">
+                    <b>Oops</b>
+                    </h1>
+                    <p><b>No Any Flights Found On This Day</b></p>
+                    <div className="text-center">
+                      <img
+                        src="/img/no-plane.png"
+                        className="img-fluid"
+                        alt=""
+                        style={{marginTop:'20px',width:'300px'}}
+                      />
+                    </div>
+                  </div>
+  
+                  :
+  
+  
+                  ""
+                
+
+                :
+
+
+                ""
+              }
+              
               {error ? (
                 <div className="text-center">
                   <h3 className="text-center text-info mt-4">
@@ -314,9 +347,7 @@ const HeroForm = () => {
                       <Typeahead
                         name="city"
                         type="text"
-                        // here
-                        // value={depart}
-                        // onChange={setDepart}
+                        
                         onChange={setDepart}
                         selected={depart}
                         placeholder="Depart..."
@@ -330,9 +361,7 @@ const HeroForm = () => {
                       <Typeahead
                         name="city"
                         type="text"
-                        // here
-                        // value={destination}
-                        // onChange={(e)=>setDestination(e.target.value)}
+                       
                         onChange={setDestination}
                         placeholder="Destination..."
                         options={codes}
@@ -353,13 +382,10 @@ const HeroForm = () => {
                         placeholder="Journey Date"
                       />
                     </div>
-                    {/* <div className="form-group tm-form-element tm-form-element-50">
-                  <i className="fa fa-calendar fa-2x tm-form-element-icon" />
-                  <input name="check-out" type="text" className="form-control" id="inputCheckOut" placeholder="Check Out" />
-                </div> */}
+              
                   </div>
                   <div className="form-row tm-search-form-row">
-                    <div className="form-group tm-form-element tm-form-element-2">
+                    {/* <div className="form-group tm-form-element tm-form-element-2">
                       <select
                         name="adult"
                         className="form-control tm-select"
@@ -415,7 +441,7 @@ const HeroForm = () => {
                         <option value="Premium Economy">Premium Economy</option>
                       </select>
                       <i className="fa fa-user tm-form-element-icon tm-form-element-icon-small" />
-                    </div>
+                    </div> */}
 
                     <div className="form-group tm-form-element tm-form-element-2">
                       <button

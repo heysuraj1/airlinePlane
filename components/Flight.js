@@ -18,10 +18,15 @@ const Flight = () => {
       </h3>
     );
 
-  const addToCart = (ed, prico) => {
+  const addToCart = (ed, prico, depart, arrival,departPlace,arrivalPlace) => {
     addItem({
       id: ed,
       price: prico,
+      dep: depart,
+      arriv: arrival,
+      departPlace,
+      arrivalPlace
+
     });
     router.push("/BookTickets");
   };
@@ -44,7 +49,12 @@ const Flight = () => {
                           alt=""
                         />
                       </div>
-                      <div className="col mt-3">Flight Name Here</div>
+                      <div className="col mt-3">
+                        {hit.attributes.Depart_place}
+                        <i className="fas fa-arrow-alt-circle-right">                   
+                        </i>&nbsp;
+                          {hit.attributes.Arrival_place}
+                      </div>
                       <div className="col mt-3">
                         {hit.attributes.Depart.slice(0, 5)}&nbsp;
                         <i className="fas fa-arrow-alt-circle-right"> </i>&nbsp;
@@ -57,7 +67,14 @@ const Flight = () => {
                             style={{ width: "100%", cursor: "pointer" }}
                             className="btn btn-info"
                             onClick={() =>
-                              addToCart(hit.id, hit.attributes.Price)
+                              addToCart(
+                                hit.id,
+                                hit.attributes.Price,
+                                hit.attributes.Depart.slice(0, 5),
+                                hit.attributes.Arrival.slice(0, 5),
+                                hit.attributes.Depart_place,
+                                hit.attributes.Arrival_place
+                              )
                             }
                           >
                             BOOK
