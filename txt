@@ -11,3 +11,18 @@ RajBooking@786
 
 
 }
+
+{
+admin login 
+
+email : onlinebooking517@gmail.com
+password : @Rto54321
+}
+
+
+{
+	url
+
+dashboard : https://bookingdash.herokuapp.com/admin
+main site : 
+}

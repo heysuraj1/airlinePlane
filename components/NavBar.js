@@ -11,24 +11,19 @@ const NavBar = () => {
       return "active";
     } else return "";
   }
-  useEffect(()=>{
+  useEffect(() => {
     setShow(false);
 
     if (window !== "undefined" && localStorage.getItem("jwt")) {
-      setShow(true)
+      setShow(true);
     } else {
       setShow(false);
     }
+  }, []);
 
-  },[])
-
-
-
-
-    // typeof window !== "undefined" && localStorage.getItem("jwt")
-    //   ? setShow(true)
-    //   : setShow(false);
-  
+  // typeof window !== "undefined" && localStorage.getItem("jwt")
+  //   ? setShow(true)
+  //   : setShow(false);
 
   return (
     <div className="tm-top-bar">
@@ -59,61 +54,115 @@ const NavBar = () => {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link href="/">
-                    <b> <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/")}`}>Home </a> </b>
+                    <b>
+                      {" "}
+                      <a
+                        style={{ fontWeight: "bolder" }}
+                        className={`nav-link  ${isActive("/")}`}
+                      >
+                        Home{" "}
+                      </a>{" "}
+                    </b>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/Flights">
-                    <b> <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/Flights")}`}>
-                      Flights
-                    </a></b>
+                    <b>
+                      {" "}
+                      <a
+                        style={{ fontWeight: "bolder" }}
+                        className={`nav-link  ${isActive("/Flights")}`}
+                      >
+                        Flights
+                      </a>
+                    </b>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/BookTickets">
-                  <b>  <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/BookTickets")}`}>
-                      Book Tickets
-                    </a> </b>
+                    <b>
+                      {" "}
+                      <a
+                        style={{ fontWeight: "bolder" }}
+                        className={`nav-link  ${isActive("/BookTickets")}`}
+                      >
+                        Book Tickets
+                      </a>{" "}
+                    </b>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/Contact">
-                  <b>  <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/Contact")}`}> 
-                      Contact Us
-                    </a> </b>
+                    <b>
+                      {" "}
+                      <a
+                        style={{ fontWeight: "bolder" }}
+                        className={`nav-link  ${isActive("/Contact")}`}
+                      >
+                        Contact Us
+                      </a>{" "}
+                    </b>
                   </Link>
                 </li>
-                {typeof window !== "undefined" && localStorage.getItem("jwt") ? (
+                {typeof window !== "undefined" &&
+                localStorage.getItem("jwt") ? (
                   <>
-                  <li className="nav-item">
-                    <Link href="/MyTickets">
-                    <b>  <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/MyTickets")}`}>
-                        My Tickets
-                      </a></b>
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="/Login">
-                    <b>  <a style={{fontWeight:'bolder'}} onClick={()=>{localStorage.clear("jwt")} } className={`nav-link  ${isActive("/Login")}`}>
-                        LogOut
-                      </a></b>
-                    </Link>
-                  </li>
+                    <li className="nav-item">
+                      <Link href="/MyTickets">
+                        <b>
+                          {" "}
+                          <a
+                            style={{ fontWeight: "bolder" }}
+                            className={`nav-link  ${isActive("/MyTickets")}`}
+                          >
+                            My Tickets
+                          </a>
+                        </b>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link href="/Login">
+                        <b>
+                          {" "}
+                          <a
+                            style={{ fontWeight: "bolder" }}
+                            onClick={() => {
+                              localStorage.clear("jwt");
+                            }}
+                            className={`nav-link  ${isActive("/Login")}`}
+                          >
+                            LogOut
+                          </a>
+                        </b>
+                      </Link>
+                    </li>
                   </>
                 ) : (
                   <>
                     <li className="nav-item">
                       <Link href="/Login">
-                       <b> <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/Login")}`}>
-                          Login
-                        </a> </b>
+                        <b>
+                          {" "}
+                          <a
+                            style={{ fontWeight: "bolder" }}
+                            className={`nav-link  ${isActive("/Login")}`}
+                          >
+                            Login
+                          </a>{" "}
+                        </b>
                       </Link>
                     </li>
                     <li className="nav-item">
                       <Link href="/Signup">
-                      <b>  <a style={{fontWeight:'bolder'}} className={`nav-link  ${isActive("/Signup")}`}>
-                          Signup
-                        </a> </b>
+                        <b>
+                          {" "}
+                          <a
+                            style={{ fontWeight: "bolder" }}
+                            className={`nav-link  ${isActive("/Signup")}`}
+                          >
+                            Signup
+                          </a>{" "}
+                        </b>
                       </Link>
                     </li>
                   </>
@@ -183,6 +232,28 @@ const NavBar = () => {
                     </button>
                   </Link>
                 </li>
+                {
+                  typeof window !== "undefined" &&
+                  localStorage.getItem("jwt") ?
+
+                <li className="p-1">
+                  <Link href="/MyTickets">
+                    <button
+                      type="button"
+                      style={{ width: "100%" }}
+                      className="btn btn-primary"
+                      data-bs-dismiss="modal"
+                    >
+                      My Tickets
+                    </button>
+                  </Link>
+                </li>
+
+
+                  :
+
+                  ""
+                }
                 <li className="p-1">
                   <Link href="/Contact">
                     <button
@@ -196,7 +267,8 @@ const NavBar = () => {
                   </Link>
                 </li>
 
-                {show ? (
+                {typeof window !== "undefined" &&
+                localStorage.getItem("jwt") ? (
                   <li className="p-1">
                     <Link href="/Login">
                       <div className="text-center mt-2">
@@ -205,7 +277,9 @@ const NavBar = () => {
                           style={{ width: "70%", borderRadius: "100px" }}
                           className="btn btn-danger"
                           data-bs-dismiss="modal"
-                          onClick={()=>{localStorage.clear}}
+                          onClick={() => {
+                            localStorage.clear("jwt");
+                          }}
                         >
                           LOGOUT
                         </button>
