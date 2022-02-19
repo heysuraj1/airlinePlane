@@ -3,11 +3,16 @@ import Link from "next/link";
 import { GET_ALL_FLIGHTS } from "../gqloperations/queries";
 import { CartProvider, useCart } from "react-use-cart";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 const Flight = () => {
   const router = useRouter();
   const { addItem } = useCart();
   const { loading, data, error } = useQuery(GET_ALL_FLIGHTS);
+  const [showinfor, setShowInfor] = useState();
+  useEffect(() => {
+    setShowInfor(false);
+  }, []);
 
   if (data) console.log(data);
 
@@ -18,22 +23,25 @@ const Flight = () => {
       </h3>
     );
 
-  const addToCart = (ed, prico, depart, arrival,departPlace,arrivalPlace) => {
+  const addToCart = (ed, prico, depart, arrival, departPlace, arrivalPlace) => {
     addItem({
       id: ed,
       price: prico,
       dep: depart,
       arriv: arrival,
       departPlace,
-      arrivalPlace
-
+      arrivalPlace,
     });
     router.push("/BookTickets");
   };
 
+  const showInfo = () => {
+    setShowInfor(true);
+  };
+
   return (
-    <div>
-      <div className="container-fluid mt-5">
+    <div >
+      <div className="container-fluid mt-5" >
         <div className="container-fluid">
           <div className="row">
             {data.flightTickets.data.map((hit) => {
@@ -50,38 +58,60 @@ const Flight = () => {
                         />
                       </div>
                       <div className="col mt-3">
-                        {hit.attributes.Depart_place}
-                        <i className="fas fa-arrow-alt-circle-right">                   
-                        </i>&nbsp;
-                          {hit.attributes.Arrival_place}
+                        <b>Flight</b> <br />
+                        123456
                       </div>
                       <div className="col mt-3">
-                        {hit.attributes.Depart.slice(0, 5)}&nbsp;
-                        <i className="fas fa-arrow-alt-circle-right"> </i>&nbsp;
+                        <b>{hit.attributes.Depart_place}</b> <br />
+                        {hit.attributes.Depart.slice(0, 5)}
+                      </div>
+                      <div className="col mt-3">
+                        <b> {hit.attributes.Arrival_place} </b> <br />
                         {hit.attributes.Arrival.slice(0, 5)}
                       </div>
-                      <div className="col mt-3">₹{hit.attributes.Price}</div>
+
+                      {/* <div className="col mt-3">₹{hit.attributes.Price}</div> */}
                       <div className="col mt-3">
                         <div className="text-center">
-                          <button
-                            style={{ width: "100%", cursor: "pointer" }}
-                            className="btn btn-info"
-                            onClick={() =>
-                              addToCart(
-                                hit.id,
-                                hit.attributes.Price,
-                                hit.attributes.Depart.slice(0, 5),
-                                hit.attributes.Arrival.slice(0, 5),
-                                hit.attributes.Depart_place,
-                                hit.attributes.Arrival_place
-                              )
-                            }
+                          <div
+                            className="btn-group"
+                            role="group"
+                            aria-label="Basic example"
                           >
-                            BOOK
-                          </button>
+                            <button
+                              style={{ width: "100%", cursor: "pointer" }}
+                              className="btn btn-info"
+                              onClick={() =>
+                                addToCart(
+                                  hit.id,
+                                  hit.attributes.Price,
+                                  hit.attributes.Depart.slice(0, 5),
+                                  hit.attributes.Arrival.slice(0, 5),
+                                  hit.attributes.Depart_place,
+                                  hit.attributes.Arrival_place
+                                )
+                              }
+                            >
+                              <b>₹{hit.attributes.Price}</b> BOOK
+                            </button>
+                            <button
+                              style={{ width: "80px", cursor: "pointer" }}
+                              className="btn btn-warning"
+                              onClick={() => showInfo()}
+                            >
+                              More &#8659;
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    {showinfor ? (
+                      <div className="container bg-warning">
+                        <h6 className="p-3">{hit.attributes.Extra_info}</h6>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
               );
@@ -91,121 +121,6 @@ const Flight = () => {
       </div>
 
       {/* other fields  here   */}
-
-      <div className="container mt-5 mb-5">
-        <h2 className="text-center text-info">
-          {" "}
-          <b>Fly With Us</b>
-        </h2>
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="col">
-            <div className="text-center">
-              <img
-                width={100}
-                src="https://e7.pngegg.com/pngimages/489/391/png-clipart-airline-ticket-flight-airplane-decimal-binary-fun-pro-airplane-angle-computer.png"
-                className="img-fluid"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* here is tickets  */}
     </div>

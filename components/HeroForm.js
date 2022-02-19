@@ -157,6 +157,17 @@ const HeroForm = () => {
     "( VTZ ) Vishakhapatnam Airport",
     "( WGC ) Warangal Airport",
     "( ZER ) Zero Airport",
+    "( DXB ) DUBAI",
+    "( SHJ ) sharjah",
+    "( SYD ) Australia",
+    "( LHR ) London",
+    "( KWI ) Kuwait",
+    "( MCT ) MUSCOT",
+    "( DOH ) Doha",
+    "( JED ) JEDDAH",
+    "( AUH ) Abu Dhabi",
+    "( MLE ) Maldives",
+    "( YYZ ) Toronto"
   ];
 
   const [getTicket, { data, loading, error }] = useLazyQuery(FILTER_TICKETS, {

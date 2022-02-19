@@ -67,8 +67,8 @@ const FormCompo = () => {
     }).then((t) => t.json());
     console.log(data);
     var options = {
-      key: "rzp_test_QfgIga7Egc2twS", // Enter the Key ID generated from the Dashboard
-      name: "DigitalPrenure.in",
+      key: "rzp_test_QfUeax0k0IUFpx", // Enter the Key ID generated from the Dashboard
+      name: "Dizitalzone",
       currency: data.currency,
       amount: data.amount,
       order_id: data.id,

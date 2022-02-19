@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useQuery } from '@apollo/client';
+import {HOME_DATA} from '../gqloperations/queries'
+
 
 const NavBar = () => {
   const router = useRouter();
@@ -25,6 +28,15 @@ const NavBar = () => {
   //   ? setShow(true)
   //   : setShow(false);
 
+
+
+  const {data,loading,error} = useQuery(HOME_DATA)
+
+ if(data) console.log(data)
+ if(loading) console.log(loading)
+ if(error) console.log(error)
+
+
   return (
     <div className="tm-top-bar">
       {/* Top Navbar */}
@@ -39,7 +51,15 @@ const NavBar = () => {
                   src="img/logo.png"
                   alt="Site logo"
                 />
-                Air Service
+                {
+                  data ?
+                  
+                  data.header.data.attributes.head_title
+              
+                
+                  :
+                  ""
+                }
               </a>
             </Link>
             <button

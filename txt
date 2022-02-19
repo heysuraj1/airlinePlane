@@ -13,7 +13,7 @@ RajBooking@786
 }
 
 {
-admin login 
+dashboard login 
 
 email : onlinebooking517@gmail.com
 password : @Rto54321
@@ -24,5 +24,20 @@ password : @Rto54321
 	url
 
 dashboard : https://bookingdash.herokuapp.com/admin
-main site : 
+main site : https://newairticket.vercel.app
+}
+
+
+{
+    cloudenry 
+    onlinebooking517@gmail.com
+    @Rto54321
+
+
+    https://dshnrlwkw.mo.cloudinary.net/rest/of/the/path/image.jpg
+}
+{
+    razorpay 
+    onlinebooking517@gmail.com
+    @Rto54321
 }
