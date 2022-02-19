@@ -37,7 +37,7 @@ const Section = () => {
             >
               <div className="container text-center">
                 <img
-                  src={BACKEND_URL+`${hit.attributes.Image.data.attributes.url}`}
+                  src={`${hit.attributes.Image.data.attributes.url}`}
                   className="img-fluid imgholi"
                   alt=""
                 />

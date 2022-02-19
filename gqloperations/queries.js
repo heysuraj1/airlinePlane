@@ -164,8 +164,8 @@ query Attributes {
 `
 export const FOOTER_DATA = gql`
 
-query Attributes {
-  footer {
+query Footers {
+  footers {
     data {
       attributes {
         Credit
