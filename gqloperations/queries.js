@@ -14,7 +14,7 @@ query FlightTickets($filters: FlightTicketFiltersInput) {
           Arrival_place
           Arrival
           Price
-          Date
+         
         }
       }
       
@@ -55,7 +55,7 @@ query FlightTickets {
         Depart
         Arrival_place
         Arrival
-        Date
+        
         Price
         Extra_info
         

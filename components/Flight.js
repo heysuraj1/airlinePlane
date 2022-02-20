@@ -43,6 +43,8 @@ const Flight = () => {
     <div >
       <div className="container-fluid mt-5" >
         <div className="container-fluid">
+          {
+            data ?
           <div className="row">
             {data.flightTickets.data.map((hit) => {
               return (
@@ -117,6 +119,12 @@ const Flight = () => {
               );
             })}
           </div>
+
+
+            :
+
+            ""
+          }
         </div>
       </div>
 

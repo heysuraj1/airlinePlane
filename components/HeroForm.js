@@ -169,6 +169,7 @@ const HeroForm = () => {
     "( MLE ) Maldives",
     "( YYZ ) Toronto"
   ];
+  console.log(date.slice(8,10),date.slice(5,7),date.slice(0,4))
 
   const [getTicket, { data, loading, error }] = useLazyQuery(FILTER_TICKETS, {
     variables: {
@@ -179,9 +180,15 @@ const HeroForm = () => {
         Arrival_place: {
           contains: destination.toString().slice(2, 5),
         },
-        Date: {
-          gt: date,
+        Flight_Day: {
+          contains: `D_${date.slice(8,10)}`
         },
+        Flight_Month: {
+          "contains": `M_${date.slice(5,7)}`
+        },
+        Flight_Year: {
+          "contains": `Y_${date.slice(0,4)}`
+        }
       },
     },
   });
