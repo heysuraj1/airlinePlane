@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "react-bootstrap-typeahead/css/Typeahead.css";
 
-
 const HeroForm = () => {
   const { addItem } = useCart();
   const router = useRouter();
@@ -167,9 +166,9 @@ const HeroForm = () => {
     "( JED ) JEDDAH",
     "( AUH ) Abu Dhabi",
     "( MLE ) Maldives",
-    "( YYZ ) Toronto"
+    "( YYZ ) Toronto",
   ];
-  console.log(date.slice(8,10),date.slice(5,7),date.slice(0,4))
+  console.log(date.slice(8, 10), date.slice(5, 7), date.slice(0, 4));
 
   const [getTicket, { data, loading, error }] = useLazyQuery(FILTER_TICKETS, {
     variables: {
@@ -181,14 +180,14 @@ const HeroForm = () => {
           contains: destination.toString().slice(2, 5),
         },
         Flight_Day: {
-          contains: `D_${date.slice(8,10)}`
+          contains: `D_${date.slice(8, 10)}`,
         },
         Flight_Month: {
-          "contains": `M_${date.slice(5,7)}`
+          contains: `M_${date.slice(5, 7)}`,
         },
         Flight_Year: {
-          "contains": `Y_${date.slice(0,4)}`
-        }
+          contains: `Y_${date.slice(0, 4)}`,
+        },
       },
     },
   });
@@ -246,38 +245,31 @@ const HeroForm = () => {
             {/* <h2 className="text-center mt-3">All Available Flights</h2> */}
 
             <div className="container mt-3">
-              {
-                data ?
-
-                
-                  data.flightTickets.data == 0 ?
+              {data ? (
+                data.flightTickets.data == 0 ? (
                   <div className="text-center">
                     <h1 className="text-center text-info mt-4 text-danger">
-                    <b>Oops</b>
+                      <b>Oops</b>
                     </h1>
-                    <p><b>No Any Flights Found On This Day</b></p>
+                    <p>
+                      <b>No Any Flights Found On This Day</b>
+                    </p>
                     <div className="text-center">
                       <img
                         src="/img/no-plane.png"
                         className="img-fluid"
                         alt=""
-                        style={{marginTop:'20px',width:'300px'}}
+                        style={{ marginTop: "20px", width: "300px" }}
                       />
                     </div>
                   </div>
-  
-                  :
-  
-  
+                ) : (
                   ""
-                
-
-                :
-
-
+                )
+              ) : (
                 ""
-              }
-              
+              )}
+
               {error ? (
                 <div className="text-center">
                   <h3 className="text-center text-info mt-4">
@@ -314,11 +306,16 @@ const HeroForm = () => {
                                   alt=""
                                 />
                               </div>
-                              <div className="col mt-3">Flight Name Here</div>
                               <div className="col mt-3">
-                                07:45{" "}
+                                {hit.attributes.Depart_place} <br />
                                 <i className="fas fa-arrow-alt-circle-right"></i>{" "}
-                                12:00
+                                <br />
+                                {hit.attributes.Arrival_place}
+                              </div>
+                              <div className="col mt-3">
+                                {hit.attributes.Depart.slice(0, 5)}
+                                <i className="fas fa-arrow-alt-circle-right"></i>{" "}
+                                {hit.attributes.Arrival.slice(0, 5)}
                               </div>
                               <div className="col mt-3">
                                 ₹{hit.attributes.Price}
@@ -365,7 +362,6 @@ const HeroForm = () => {
                       <Typeahead
                         name="city"
                         type="text"
-                        
                         onChange={setDepart}
                         selected={depart}
                         placeholder="Depart..."
@@ -379,7 +375,6 @@ const HeroForm = () => {
                       <Typeahead
                         name="city"
                         type="text"
-                       
                         onChange={setDestination}
                         placeholder="Destination..."
                         options={codes}
@@ -400,7 +395,6 @@ const HeroForm = () => {
                         placeholder="Journey Date"
                       />
                     </div>
-              
                   </div>
                   <div className="form-row tm-search-form-row">
                     {/* <div className="form-group tm-form-element tm-form-element-2">
