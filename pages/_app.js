@@ -12,6 +12,7 @@ import { Lines } from "react-preloaders";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CartProvider } from "react-use-cart";
+import Whatsapp from "../components/Whatsapp";
 
 const client = new ApolloClient({
   uri: `${BACKEND_URL}/graphql`,
@@ -52,12 +53,8 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <ApolloProvider client={client}>
-        <a
-          href="https://api.whatsapp.com/send?phone=+91123456789&text=Hii."
-          className="float"
-        >
-          <i style={{ fontSize: "40px" }} className="fab fa-whatsapp mt-2"></i>
-        </a>
+        {/* here whatsapp  */}
+        <Whatsapp/>
         <CartProvider>
           <NavBar />
           <ToastContainer />
