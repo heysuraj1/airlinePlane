@@ -6,8 +6,8 @@ export default async function handler(req, res) {
     const {cartTotal} = req.body
     // Initialize razorpay object
     const razorpay = new Razorpay({
-      key_id: 'rzp_test_QfUeax0k0IUFpx',
-      key_secret: 'I3BlVunKFNVerCOl3TT1H0k0',
+      key_id: 'rzp_live_sLkFPveFYjQnIP',
+      key_secret: 'Wal11k0aa9ES8u6E5n1JnEy4',
     });
 
     // Create an order -> generate the OrderID -> Send it to the Front-end

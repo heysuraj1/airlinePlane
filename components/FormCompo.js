@@ -67,7 +67,7 @@ const FormCompo = () => {
     }).then((t) => t.json());
     console.log(data);
     var options = {
-      key: "rzp_test_QfUeax0k0IUFpx", // Enter the Key ID generated from the Dashboard
+      key: "rzp_live_sLkFPveFYjQnIP", // Enter the Key ID generated from the Dashboard
       name: "Dizitalzone",
       currency: data.currency,
       amount: data.amount,
