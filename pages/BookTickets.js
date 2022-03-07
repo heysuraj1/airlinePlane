@@ -88,7 +88,7 @@ let end
     }).then((t) => t.json());
     console.log(data);
     var options = {
-      key: "rzp_test_QfgIga7Egc2twS", // Enter the Key ID generated from the Dashboard
+      key: "rzp_live_sLkFPveFYjQnIP", // Enter the Key ID generated from the Dashboard
       name: "DigitalPrenure.in",
       currency: data.currency,
       amount: data.amount,
